@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import ormconfig from './ormconfig';
 
 @Module({
+  // Our application is configured in a module with a typeorm
+  // with the ormconfig.
   imports: [TypeOrmModule.forRoot(ormconfig), TagModule],
   controllers: [AppController],
   providers: [AppService],
