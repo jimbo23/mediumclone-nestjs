@@ -11,11 +11,11 @@ const config: ConnectionOptions = {
 
   // never use synchronize option, dangerous in production
   // use migration !
-  synchronize: true,
+  synchronize: false,
+  // config for migration
+  migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
   cli: {
-    entitiesDir: 'entity',
-    migrationsDir: 'migration',
-    subscribersDir: 'subscriber',
+    migrationsDir: 'src/migrations',
   },
 };
 
