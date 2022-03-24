@@ -2,7 +2,13 @@ import { JWT_TOKEN } from '@app/config';
 import { CreateUserDto } from '@app/user/dto/create-user.dto';
 import { UserResponseInterface } from '@app/user/types/userResponse.interface';
 import { UserEntity } from '@app/user/user.entity';
-import { Injectable } from '@nestjs/common';
+import {
+  HttpCode,
+  HttpException,
+  HttpModule,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { sign } from 'jsonwebtoken';
 import { Repository } from 'typeorm';
@@ -21,6 +27,19 @@ export class UserService {
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
+    // from payload:
+    const { username, email } = createUserDto;
+
+    const userByUsername = await this.userRepository.findOne({ username });
+    const userByEmail = await this.userRepository.findOne({ email });
+
+    if (userByUsername || userByEmail) {
+      throw new HttpException(
+        'username or email is existing!',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
+    }
+
     const newUser = new UserEntity();
     Object.assign(newUser, createUserDto);
     // this single line below does all the magic to save data to db
