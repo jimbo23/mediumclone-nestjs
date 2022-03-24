@@ -1,5 +1,6 @@
 import { JWT_TOKEN } from '@app/config';
 import { CreateUserDto } from '@app/user/dto/create-user.dto';
+import { UserResponseInterface } from '@app/user/types/userResponse.interface';
 import { UserEntity } from '@app/user/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,19 +27,21 @@ export class UserService {
     return await this.userRepository.save(newUser);
   }
 
-  buildUserResponse(user: UserEntity): any {
+  // we only create DTO for payload.
+  generateToken(user: UserEntity): string {
+    return sign(
+      { id: user.id, username: user.username, email: user.email },
+      JWT_TOKEN,
+    );
+  }
+
+  // good practice: create interface for response
+  buildUserResponse(user: UserEntity): UserResponseInterface {
     return {
       user: {
         ...user,
         token: this.generateToken(user),
       },
     };
-  }
-
-  generateToken(user: UserEntity): string {
-    return sign(
-      { id: user.id, username: user.username, email: user.email },
-      JWT_TOKEN,
-    );
   }
 }
