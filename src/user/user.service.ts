@@ -1,9 +1,10 @@
+import { JWT_TOKEN } from '@app/config';
 import { CreateUserDto } from '@app/user/dto/create-user.dto';
 import { UserEntity } from '@app/user/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { sign } from 'jsonwebtoken';
+import { Repository } from 'typeorm';
 
 // make services injectable and make available to
 // other classes by dependency injection
@@ -37,7 +38,7 @@ export class UserService {
   generateToken(user: UserEntity): string {
     return sign(
       { id: user.id, username: user.username, email: user.email },
-      'secret',
+      JWT_TOKEN,
     );
   }
 }
