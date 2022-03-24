@@ -4,6 +4,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+// make services injectable and make available to
+// other classes by dependency injection
+// doing constructor(private readonly userService: UserService) {}
+// remember to update the providers: [] in Module
 @Injectable()
 export class UserService {
   constructor(
@@ -16,7 +20,7 @@ export class UserService {
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     const newUser = new UserEntity();
     Object.assign(newUser, createUserDto);
-    console.log('new User', newUser);
+    console.table(newUser);
     // this single line below does all the magic to save data to db
     return await this.userRepository.save(newUser);
   }
