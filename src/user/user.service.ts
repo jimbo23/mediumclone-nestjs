@@ -1,5 +1,6 @@
 import { JWT_TOKEN } from '@app/config';
 import { CreateUserDto } from '@app/user/dto/create-user.dto';
+import { LoginUserDto } from '@app/user/dto/login-user.dto';
 import { UserResponseInterface } from '@app/user/types/userResponse.interface';
 import { UserEntity } from '@app/user/user.entity';
 import {
@@ -44,6 +45,18 @@ export class UserService {
     Object.assign(newUser, createUserDto);
     // this single line below does all the magic to save data to db
     return await this.userRepository.save(newUser);
+  }
+
+  async login(loginUserDto: LoginUserDto): Promise<UserResponseInterface> {
+    const { email, password } = loginUserDto;
+
+    const foundUser = await this.userRepository.findOne({ email });
+
+    if (!foundUser) {
+      throw new HttpException('User not found!', HttpStatus.NOT_FOUND);
+    }
+
+    return this.buildUserResponse(foundUser);
   }
 
   // we only create DTO for payload.

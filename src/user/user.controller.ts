@@ -1,4 +1,5 @@
 import { CreateUserDto } from '@app/user/dto/create-user.dto';
+import { LoginUserDto } from '@app/user/dto/login-user.dto';
 import { UserResponseInterface } from '@app/user/types/userResponse.interface';
 import { UserEntity } from '@app/user/user.entity';
 import { UserService } from '@app/user/user.service';
@@ -23,15 +24,12 @@ export class UserController {
     const user = await this.userService.createUser(createUserDto);
     return this.userService.buildUserResponse(user);
   }
-}
 
-// based on specs, please return
-// {
-//   user: {
-//     email,
-//     token,
-//     username,
-//     bio,
-//     image
-//   }
-// }
+  @Post('/users/login')
+  @UsePipes(new ValidationPipe())
+  async login(
+    @Body('user') loginUserDto: LoginUserDto,
+  ): Promise<UserResponseInterface> {
+    return await this.userService.login(loginUserDto);
+  }
+}
