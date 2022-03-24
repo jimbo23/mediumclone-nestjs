@@ -3,6 +3,7 @@ import { UserEntity } from '@app/user/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { sign } from 'jsonwebtoken';
 
 // make services injectable and make available to
 // other classes by dependency injection
@@ -20,8 +21,23 @@ export class UserService {
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     const newUser = new UserEntity();
     Object.assign(newUser, createUserDto);
-    console.table(newUser);
     // this single line below does all the magic to save data to db
     return await this.userRepository.save(newUser);
+  }
+
+  buildUserResponse(user: UserEntity): any {
+    return {
+      user: {
+        ...user,
+        token: this.generateToken(user),
+      },
+    };
+  }
+
+  generateToken(user: UserEntity): string {
+    return sign(
+      { id: user.id, username: user.username, email: user.email },
+      'secret',
+    );
   }
 }

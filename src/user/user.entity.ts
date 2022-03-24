@@ -9,11 +9,11 @@ export class UserEntity {
   @Column()
   email: string;
 
-  @Column({ default: '' })
-  bio: string;
-
   @Column()
   password: string;
+
+  @Column({ default: '' })
+  bio: string;
 
   @Column({ default: '' })
   image: string;
