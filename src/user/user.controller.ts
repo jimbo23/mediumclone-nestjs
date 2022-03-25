@@ -30,6 +30,7 @@ export class UserController {
   async login(
     @Body('user') loginUserDto: LoginUserDto,
   ): Promise<UserResponseInterface> {
-    return await this.userService.login(loginUserDto);
+    const user = await this.userService.login(loginUserDto);
+    return await this.userService.buildUserResponse(user);
   }
 }

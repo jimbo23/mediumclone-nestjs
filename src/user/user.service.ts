@@ -13,6 +13,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { sign } from 'jsonwebtoken';
 import { Repository } from 'typeorm';
+import { compare } from 'bcrypt';
 
 // make services injectable and make available to
 // other classes by dependency injection
@@ -47,16 +48,28 @@ export class UserService {
     return await this.userRepository.save(newUser);
   }
 
-  async login(loginUserDto: LoginUserDto): Promise<UserResponseInterface> {
+  async login(loginUserDto: LoginUserDto): Promise<UserEntity> {
     const { email, password } = loginUserDto;
 
     const foundUser = await this.userRepository.findOne({ email });
 
     if (!foundUser) {
-      throw new HttpException('User not found!', HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'Credentials are not valid!',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
     }
 
-    return this.buildUserResponse(foundUser);
+    const isPasswordCorrect = await compare(password, foundUser.password);
+
+    if (!isPasswordCorrect) {
+      throw new HttpException(
+        'Incorrect password!',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
+    }
+
+    return foundUser;
   }
 
   // we only create DTO for payload.
