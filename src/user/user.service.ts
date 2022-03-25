@@ -50,26 +50,29 @@ export class UserService {
 
   async login(loginUserDto: LoginUserDto): Promise<UserEntity> {
     const { email, password } = loginUserDto;
+    const user = await this.userRepository.findOne(
+      { email },
+      { select: ['id', 'bio', 'email', 'image', 'password', 'username'] },
+    );
 
-    const foundUser = await this.userRepository.findOne({ email });
-
-    if (!foundUser) {
+    if (!user) {
       throw new HttpException(
         'Credentials are not valid!',
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
     }
 
-    const isPasswordCorrect = await compare(password, foundUser.password);
-
+    const isPasswordCorrect = await compare(password, user.password);
     if (!isPasswordCorrect) {
       throw new HttpException(
-        'Incorrect password!',
+        'Credentials are not valid!',
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
     }
 
-    return foundUser;
+    delete user.password;
+
+    return user;
   }
 
   // we only create DTO for payload.

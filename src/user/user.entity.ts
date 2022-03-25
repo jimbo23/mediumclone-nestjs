@@ -9,7 +9,9 @@ export class UserEntity {
   @Column()
   email: string;
 
-  @Column()
+  // safer to by default unselect the password
+  // coz userEntity is reused a lot
+  @Column({ select: false })
   password: string;
 
   @Column()
