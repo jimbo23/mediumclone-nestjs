@@ -25,17 +25,21 @@
 
 ### verify token via jwt
 
-->the idea of this is to obtain the jwt token from Authorization header
-->decode the token with the JWT_SECRET (YOUR SECRET) and you retrieve your payload
-->most likely the payload contains some user info, eg user id and username
-->use available info to retrieve user object from the database
-->set request.user to user so you can user anywhere
+1. the idea of this is to obtain the jwt token from Authorization header
+2. decode the token with the JWT_SECRET (YOUR SECRET) and you retrieve your payload
+3. most likely the payload contains some user info, eg user id and username
+4. use available info to retrieve user object from the database
+5. set request.user to user so you can user anywhere
 
 ```
 if (!req.user) {
   // user is not logged in
 }
 ```
+
+### what is a middleware?
+
+<img src='./middleware.png' height='200px'/>
 
 ## Installation
 
