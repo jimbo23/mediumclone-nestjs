@@ -80,6 +80,13 @@ export class UserService {
     return user;
   }
 
+  async updateUser(updateUserDto, user): Promise<UserEntity> {
+    return this.userRepository.save({
+      ...user,
+      ...updateUserDto,
+    });
+  }
+
   // we only create DTO for payload.
   generateToken(user: UserEntity): string {
     return sign(
