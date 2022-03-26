@@ -1,3 +1,5 @@
+import { Unique } from 'typeorm';
+
 export class UpdateUserDto {
   readonly email: string;
 

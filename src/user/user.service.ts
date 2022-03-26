@@ -82,6 +82,9 @@ export class UserService {
 
   async updateUser(id, updateUserDto): Promise<UserEntity> {
     // try to avoid duplicate while updating
+
+    // IMO maybe this can be done at database level, instead of service level
+
     const { username } = updateUserDto;
 
     if (username) {
