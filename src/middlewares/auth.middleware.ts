@@ -1,5 +1,6 @@
-import { NestMiddleware } from '@nestjs/common';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 
+@Injectable()
 export class AuthMiddleware implements NestMiddleware {
   async use(req, res, next) {
     console.log(req.headers);
