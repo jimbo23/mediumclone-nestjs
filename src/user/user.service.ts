@@ -80,11 +80,10 @@ export class UserService {
     return user;
   }
 
-  async updateUser(updateUserDto, user): Promise<UserEntity> {
-    return this.userRepository.save({
-      ...user,
-      ...updateUserDto,
-    });
+  async updateUser(id, updateUserDto): Promise<UserEntity> {
+    const user = await this.findById(id);
+    Object.assign(user, updateUserDto);
+    return await this.userRepository.save(user);
   }
 
   // we only create DTO for payload.
