@@ -1,4 +1,5 @@
 import { ExpressRequest } from '@app/types/expressRequest.interface';
+import { User } from '@app/user/decorators/user.decorator';
 import { CreateUserDto } from '@app/user/dto/create-user.dto';
 import { LoginUserDto } from '@app/user/dto/login-user.dto';
 import { UserResponseInterface } from '@app/user/types/userResponse.interface';
@@ -35,13 +36,11 @@ export class UserController {
     @Body('user') loginUserDto: LoginUserDto,
   ): Promise<UserResponseInterface> {
     const user = await this.userService.login(loginUserDto);
-    return await this.userService.buildUserResponse(user);
+    return this.userService.buildUserResponse(user);
   }
 
   @Get('/user')
-  async currentUser(
-    @Req() request: ExpressRequest,
-  ): Promise<UserResponseInterface> {
-    return this.userService.buildUserResponse(request.user);
+  async currentUser(@User() user: any): Promise<UserResponseInterface> {
+    return this.userService.buildUserResponse(user);
   }
 }
