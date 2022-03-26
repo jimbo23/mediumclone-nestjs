@@ -1,1 +1,1 @@
-export const JWT_TOKEN = 'this-is-my-jwt-secret';
+export const JWT_SECRET = 'this-is-my-jwt-secret';

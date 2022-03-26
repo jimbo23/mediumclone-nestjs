@@ -1,4 +1,4 @@
-import { JWT_TOKEN } from '@app/config';
+import { JWT_SECRET } from '@app/config';
 import { CreateUserDto } from '@app/user/dto/create-user.dto';
 import { LoginUserDto } from '@app/user/dto/login-user.dto';
 import { UserResponseInterface } from '@app/user/types/userResponse.interface';
@@ -79,7 +79,7 @@ export class UserService {
   generateToken(user: UserEntity): string {
     return sign(
       { id: user.id, username: user.username, email: user.email },
-      JWT_TOKEN,
+      JWT_SECRET,
     );
   }
 

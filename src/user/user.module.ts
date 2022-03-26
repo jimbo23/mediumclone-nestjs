@@ -10,5 +10,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   // after doing the above then you can inject Repositiory with User Entity
   providers: [UserService],
   controllers: [UserController],
+  exports: [UserService],
 })
 export class UserModule {}
