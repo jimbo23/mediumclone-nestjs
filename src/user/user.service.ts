@@ -81,6 +81,21 @@ export class UserService {
   }
 
   async updateUser(id, updateUserDto): Promise<UserEntity> {
+    // try to avoid duplicate while updating
+    const { username } = updateUserDto;
+
+    if (username) {
+      const foundList = await this.userRepository.find({ username });
+      console.log(foundList);
+
+      if (foundList.length > 0) {
+        throw new HttpException(
+          'Duplicate username!',
+          HttpStatus.UNPROCESSABLE_ENTITY,
+        );
+      }
+    }
+
     const user = await this.findById(id);
     Object.assign(user, updateUserDto);
     return await this.userRepository.save(user);

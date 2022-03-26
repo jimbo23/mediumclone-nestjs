@@ -50,9 +50,12 @@ export class UserController {
   @UseGuards(AuthGuard)
   async updateUser(
     @Body('user') updateUserDto: UpdateUserDto,
-    @User() user: UserEntity,
-  ): Promise<any> {
-    const updatedUser = await this.userService.updateUser(updateUserDto, user);
-    return this.userService.buildUserResponse(updatedUser);
+    @User('id') currentUserId: UserEntity,
+  ): Promise<UserResponseInterface> {
+    const user = await this.userService.updateUser(
+      currentUserId,
+      updateUserDto,
+    );
+    return this.userService.buildUserResponse(user);
   }
 }
