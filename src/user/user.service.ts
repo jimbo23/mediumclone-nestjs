@@ -48,6 +48,11 @@ export class UserService {
     return await this.userRepository.save(newUser);
   }
 
+  async findById(id: number): Promise<UserEntity> {
+    const user = await this.userRepository.findOne(id); // shorthand for typeorm
+    return user;
+  }
+
   async login(loginUserDto: LoginUserDto): Promise<UserEntity> {
     const { email, password } = loginUserDto;
     const user = await this.userRepository.findOne(
