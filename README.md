@@ -41,6 +41,14 @@ if (!req.user) {
 
 <img src='./middleware.png' height='200px'/>
 
+### useGuard
+
+Guard is the right place to throw Error when the token is not provided or invalid, or unauthorized
+
+Simply create a UserGuard implements CanActivate.
+If the context logic, if req.user\* === null then throw error, else proceed
+req.user will be set as the request goes through the middleware:)
+
 ## Installation
 
 ```bash
