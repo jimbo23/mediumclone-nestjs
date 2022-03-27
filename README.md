@@ -49,6 +49,27 @@ Simply create a UserGuard implements CanActivate.
 If the context logic, if req.user\* === null then throw error, else proceed
 req.user will be set as the request goes through the middleware:)
 
+### how to run postgres on docker
+
+Do:
+
+```
+docker run --name postgresql-container -p 5432:5432 -e POSTGRES_PASSWORD=123 -d postgres
+```
+
+```
+  type: 'postgres',
+  host: 'localhost',
+  port: 5432, // this must match the port of the container
+  username: 'postgres', // stick to postgres
+  password: '123', // this is the password that is set when u set up docker container
+  database: 'postgres',
+```
+
+ensure docker is running on the right port
+
+<img src='./docker.png' height='100px'/>
+
 ## Installation
 
 ```bash

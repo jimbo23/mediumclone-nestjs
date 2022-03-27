@@ -4,9 +4,9 @@ const config: ConnectionOptions = {
   type: 'postgres',
   host: 'localhost',
   port: 5432,
-  username: 'mediumcloneuser',
+  username: 'postgres',
   password: '123',
-  database: 'mediumclone',
+  database: 'postgres',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
 
   // never use synchronize option, dangerous in production
