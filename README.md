@@ -21,7 +21,7 @@
 2. apply sign() method and provide 2 args (payload, JWT_SECRET)
 3. that's all. you get back a string in return
 
-   <img src='./jwt-signed-encoded-vs-decoded.png' width='300'/>
+   <img src='./jwt-signed-encoded-vs-decoded.png' width='500px'/>
 
 ### verify token via jwt
 

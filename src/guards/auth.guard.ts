@@ -6,7 +6,6 @@ import {
   HttpStatus,
   Injectable,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
 
 // user guard to implement role-based
 @Injectable()

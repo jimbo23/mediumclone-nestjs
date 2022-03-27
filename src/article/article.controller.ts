@@ -1,10 +1,10 @@
-import { ArticleService } from "@app/article/article.service";
-import { CreateArticleDto } from "@app/article/dto/createArticle.dto";
-import { ArticleResponseInterface } from "@app/article/types/articleResponse.interface";
-import { AuthGuard } from "@app/guards/auth.guard";
-import { User } from "@app/user/decorators/user.decorator";
-import { UserEntity } from "@app/user/user.entity";
-import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { ArticleService } from '@app/article/article.service';
+import { CreateArticleDto } from '@app/article/dto/createArticle.dto';
+import { ArticleResponseInterface } from '@app/article/types/articleResponse.interface';
+import { AuthGuard } from '@app/guards/auth.guard';
+import { User } from '@app/user/decorators/user.decorator';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { UserEntity } from '@app/user/user.entity';
 
 @Controller('article')
 export class ArticleController {
