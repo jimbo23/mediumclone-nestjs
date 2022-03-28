@@ -2,10 +2,11 @@ import { ArticleEntity } from '@app/article/article.entity';
 import { CreateArticleDto } from '@app/article/dto/createArticle.dto';
 import { ArticleResponseInterface } from '@app/article/types/articleResponse.interface';
 import { UserEntity } from '@app/user/user.entity';
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import slugify from 'slugify';
+import { ArticleController } from '@app/article/article.controller';
 
 @Injectable()
 export class ArticleService {
@@ -29,6 +30,15 @@ export class ArticleService {
     article.slug = this.getSlug(createArticleDto.title);
 
     return await this.articleRepository.save(article);
+  }
+
+  async getArticle(slug: string): Promise<ArticleEntity> {
+    const article = await this.articleRepository.findOne({ slug });
+    if (!article) {
+      throw new HttpException('Article Not Found', HttpStatus.NOT_FOUND);
+    }
+
+    return article;
   }
 
   private getSlug(title: string): string {

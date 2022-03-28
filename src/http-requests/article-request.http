@@ -14,3 +14,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
         "tagList": ["reactjs", "vuejs"]
     }
 }
+
+### Get article by slug
+GET {{host}}/article/this-is-my-title-y0z9zn
