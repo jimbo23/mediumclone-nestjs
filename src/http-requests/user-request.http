@@ -1,0 +1,43 @@
+@host = http://localhost:3000
+
+
+### Register a user
+POST {{host}}/users
+Content-Type: application/json
+
+{
+  "user": {
+    "username":"wow3",
+    "email": "restclient32@gmail.com",
+    "password":"restclient32"
+  }
+}
+
+### Login a user
+POST {{host}}/users/login
+Content-Type: application/json
+
+{
+    "user":{
+        "password":"kiefer",
+        "email": "kiefer@gmail.com"
+    }
+}
+
+
+### Get current user
+GET  {{host}}/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJraWVmZXIiLCJlbWFpbCI6ImtpZWZlckBnbWFpbC5jb20iLCJpYXQiOjE2NDg0NDY3NDZ9.bONj9vGPPE76aIYZd6SNM9-khiZdVmrpqeW8gxna-mI
+
+
+### Update user
+PUT {{host}}/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJraWVmZXIiLCJlbWFpbCI6ImtpZWZlckBnbWFpbC5jb20iLCJpYXQiOjE2NDg0NDY3NDZ9.bONj9vGPPE76aIYZd6SNM9-khiZdVmrpqeW8gxna-mI
+
+{
+    "user":{
+    "image": "hello image1213",
+    "bio": "hello it's me2"
+}
+}

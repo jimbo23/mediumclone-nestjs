@@ -1,0 +1,16 @@
+@host = http://localhost:3000
+
+### Create an article
+POST {{host}}/article
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJraWVmZXIiLCJlbWFpbCI6ImtpZWZlckBnbWFpbC5jb20iLCJpYXQiOjE2NDg0NDY3NDZ9.bONj9vGPPE76aIYZd6SNM9-khiZdVmrpqeW8gxna-mI
+
+
+{
+    "article": {
+        "title":"How to learn reactJs",
+        "description": "Ever wonder how?",
+        "body": "hello it's react + vue ",
+        "tagList": ["reactjs", "vuejs"]
+    }
+}
