@@ -6,7 +6,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import slugify from 'slugify';
-import { ArticleController } from '@app/article/article.controller';
 
 @Injectable()
 export class ArticleService {
@@ -32,7 +31,7 @@ export class ArticleService {
     return await this.articleRepository.save(article);
   }
 
-  async getArticle(slug: string): Promise<ArticleEntity> {
+  async findBySlug(slug: string): Promise<ArticleEntity> {
     const article = await this.articleRepository.findOne({ slug });
     if (!article) {
       throw new HttpException('Article Not Found', HttpStatus.NOT_FOUND);

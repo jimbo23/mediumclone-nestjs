@@ -1,8 +1,10 @@
+import { ArticleEntity } from '@app/article/article.entity';
 import { ArticleService } from '@app/article/article.service';
 import { CreateArticleDto } from '@app/article/dto/createArticle.dto';
 import { ArticleResponseInterface } from '@app/article/types/articleResponse.interface';
 import { AuthGuard } from '@app/guards/auth.guard';
 import { User } from '@app/user/decorators/user.decorator';
+import { UserEntity } from '@app/user/user.entity';
 import {
   Body,
   Controller,
@@ -10,11 +12,8 @@ import {
   Get,
   Param,
   Post,
-  Query,
   UseGuards,
 } from '@nestjs/common';
-import { UserEntity } from '@app/user/user.entity';
-import { ArticleEntity } from '@app/article/article.entity';
 
 @Controller('article')
 export class ArticleController {
@@ -30,17 +29,17 @@ export class ArticleController {
     return this.articleService.buildArticleResponse(article);
   }
 
-  @Delete()
-  async delete(article: ArticleEntity) {
-    await this.articleService.delete(article);
-  }
-
   @Get('/:slug')
-  async getArticle(
+  async getOneArticle(
     @Param('slug')
     slug: string,
   ): Promise<ArticleResponseInterface> {
-    const article = await this.articleService.getArticle(slug);
+    const article = await this.articleService.findBySlug(slug);
     return this.articleService.buildArticleResponse(article);
+  }
+
+  @Delete()
+  async delete(article: ArticleEntity) {
+    await this.articleService.delete(article);
   }
 }
