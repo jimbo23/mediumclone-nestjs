@@ -1,4 +1,3 @@
-import { ExpressRequest } from '@app/types/expressRequest.interface';
 import {
   CanActivate,
   ExecutionContext,
@@ -6,8 +5,9 @@ import {
   HttpStatus,
   Injectable,
 } from '@nestjs/common';
+import { ExpressRequest } from '@app/types/expressRequest.interface';
 
-// user guard to implement role-based
+// use guard to implement role-based
 @Injectable()
 export class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {

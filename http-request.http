@@ -21,6 +21,6 @@ Content-Type: application/json
 
 ### Authorization by token, part 2. Use token to authorize.
 GET http://localhost:3000/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJoYWhhaGFoMiIsImVtYWlsIjoid293MkBnbWFpbC5jb20iLCJpYXQiOjE2NDgzOTc2NDd9.g4vteHA4NY64qLulO5TDgkPOKndNYSrx3XjIw-j3jiA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJoYWhhaGFoMiIsImVtYWlsIjoid293MkBnbWFpbC5jb20iLCJpYXQiOjE2NDg0MDAxODN9.tRWTWHw5M4stovB5VwcWOZ3BEM3ToqrsHmyUv7zXfcM
 
 ###

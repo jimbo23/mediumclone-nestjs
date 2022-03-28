@@ -33,4 +33,6 @@ export class ArticleService {
   buildArticleResponse(article: ArticleEntity): ArticleResponseInterface {
     return { article };
   }
+
+  async delete(article: ArticleEntity) {}
 }
