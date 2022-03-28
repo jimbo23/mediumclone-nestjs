@@ -1,9 +1,12 @@
 @host = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJraWVmZXI5IiwiZW1haWwiOiJraWVmZXJAZ21haWwuY29tIiwiaWF0IjoxNjQ4NDYxNDY1fQ.XVwTnMmq345tF0DqoUUg-gI-Ru08N03iObnomb2rLBc
+
+@slug=how-to-learn-reactjs-1l8tax
 
 ### Create an article
 POST {{host}}/article
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJraWVmZXIiLCJlbWFpbCI6ImtpZWZlckBnbWFpbC5jb20iLCJpYXQiOjE2NDg0NDY3NDZ9.bONj9vGPPE76aIYZd6SNM9-khiZdVmrpqeW8gxna-mI
+Authorization: Bearer {{token}}
 
 
 {
@@ -16,4 +19,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
 }
 
 ### Get article by slug
-GET {{host}}/article/this-is-my-title-y0z9zn
+GET {{host}}/article/{{slug}}
+
+
+### Delete article by slug
+DELETE {{host}}/article/{{slug}}
+Authorization: Bearer {{token}}
+
+
+### Update Article by slug
+PUT {{host}}/article/{{slug}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "article": {
+        "title":"new article",
+        "description": "wow?",
+        "body": "hello it's react + wow ",
+        "tagList": ["reactjs", "wowjs"]
+    }
+}

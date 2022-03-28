@@ -41,6 +41,8 @@ export class ArticleEntity {
     this.updatedAt = new Date();
   }
 
-  @ManyToOne(() => UserEntity, (user) => user.articles)
+  // setting relationship to eager in options will load the relation in the
+  // response everytime
+  @ManyToOne(() => UserEntity, (user) => user.articles, { eager: true })
   author: UserEntity;
 }
