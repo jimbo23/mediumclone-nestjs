@@ -1,7 +1,7 @@
 @host = http://localhost:3000
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJraWVmZXI5IiwiZW1haWwiOiJraWVmZXJAZ21haWwuY29tIiwiaWF0IjoxNjQ4NDYxNDY1fQ.XVwTnMmq345tF0DqoUUg-gI-Ru08N03iObnomb2rLBc
 
-@slug=how-to-learn-reactjs-1l8tax
+@slug=new-article-2sii02
 
 ### Create an article
 POST {{host}}/article
@@ -35,7 +35,7 @@ Authorization: Bearer {{token}}
 {
     "article": {
         "title":"new article",
-        "description": "wow?",
+        "description": "with validation",
         "body": "hello it's react + wow ",
         "tagList": ["reactjs", "wowjs"]
     }

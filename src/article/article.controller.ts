@@ -14,6 +14,8 @@ import {
   Post,
   Put,
   UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 
 @Controller('article')
@@ -21,6 +23,7 @@ export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @Post()
+  @UsePipes(new ValidationPipe())
   @UseGuards(AuthGuard)
   async create(
     @User() user: UserEntity,
@@ -46,6 +49,7 @@ export class ArticleController {
   }
 
   @Put('/:slug')
+  @UsePipes(new ValidationPipe())
   @UseGuards(AuthGuard)
   async updateArticle(
     @User('id') userId: number,
