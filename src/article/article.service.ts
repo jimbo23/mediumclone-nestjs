@@ -27,11 +27,28 @@ export class ArticleService {
 
     const articlesCount = await queryBuilder.getCount();
 
+    if (query.favourited) {
+      const user = await this.userRepository.findOne(
+        {
+          username: query.favourited,
+        },
+        { relations: ['favourites'] },
+      );
+
+      const ids = user.favourites.map((el) => el.id);
+
+      if (ids.length > 0) {
+        queryBuilder.andWhere('articles.id IN (:...ids)', { ids });
+      } else {
+        // this will give []
+        queryBuilder.andWhere('1=0');
+      }
+    }
+
     if (query.author) {
       const author = await this.userRepository.findOne({
         username: query.author,
       });
-
       // authorId is a foreign key to articles :)
       queryBuilder.andWhere('articles.authorId = :id', {
         id: author.id,
@@ -53,9 +70,21 @@ export class ArticleService {
     }
 
     const articles = await queryBuilder.getMany();
-    console.log(articles.length);
 
-    return { articles, articlesCount };
+    let favouriteIds: number[] = [];
+    if (userId) {
+      const user = await this.userRepository.findOne(userId, {
+        relations: ['favourites'],
+      });
+      favouriteIds = user.favourites.map((fav) => fav.id);
+    }
+
+    const articlesWithFavourited = articles.map((article) => {
+      const favourited = favouriteIds.includes(article.id);
+      return { ...article, favourited };
+    });
+
+    return { articles: articlesWithFavourited, articlesCount };
   }
 
   async create(

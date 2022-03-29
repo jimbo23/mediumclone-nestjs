@@ -4,8 +4,8 @@ Content-Type: application/json
 
 {
   "user": {
-    "username":"newuser",
-    "email": "newuser@gmail.com",
+    "username":"newuser3",
+    "email": "newuser3@gmail.com",
     "password":"newuser"
   }
 }

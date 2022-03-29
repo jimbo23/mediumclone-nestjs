@@ -1,5 +1,5 @@
 ### Get Feed (articles)
-GET {{host}}/article?tag=react&limit=2
+GET {{host}}/article?favourited=newuser3
 Authorization: Bearer {{token}}
 
 ### Create an article

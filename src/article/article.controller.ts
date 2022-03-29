@@ -1,4 +1,3 @@
-import { ArticleEntity } from '@app/article/article.entity';
 import { ArticleService } from '@app/article/article.service';
 import { CreateArticleDto } from '@app/article/dto/createArticle.dto';
 import { ArticleResponseInterface } from '@app/article/types/articleResponse.interface';
