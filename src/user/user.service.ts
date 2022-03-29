@@ -3,13 +3,7 @@ import { CreateUserDto } from '@app/user/dto/create-user.dto';
 import { LoginUserDto } from '@app/user/dto/login-user.dto';
 import { UserResponseInterface } from '@app/user/types/userResponse.interface';
 import { UserEntity } from '@app/user/user.entity';
-import {
-  HttpCode,
-  HttpException,
-  HttpModule,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { sign } from 'jsonwebtoken';
 import { Repository } from 'typeorm';
@@ -49,8 +43,8 @@ export class UserService {
   }
 
   async findById(id: number): Promise<UserEntity> {
-    const user = await this.userRepository.findOne(id); // shorthand for typeorm
-    return user;
+    // shorthand for typeorm
+    return await this.userRepository.findOne(id);
   }
 
   async login(loginUserDto: LoginUserDto): Promise<UserEntity> {

@@ -24,6 +24,12 @@ Authorization: Bearer {{token}}
 GET {{host}}/article/{{slug}}
 
 
+### Favourite an article with slug
+
+POST {{host}}/article/{{slug}}/favourite
+Authorization: Bearer {{token}}
+
+
 ### Delete article by slug
 DELETE {{host}}/article/{{slug}}
 Authorization: Bearer {{token}}

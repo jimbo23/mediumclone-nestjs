@@ -125,8 +125,22 @@ export class ArticleService {
   }
 
   async likeArticle(userId: number, slug: string): Promise<ArticleEntity> {
-    const user = this.userRepository.findOne(userId);
-    const article = this.findBySlug(slug);
-    return 'string' as any;
+    const user = await this.userRepository.findOne(userId, {
+      relations: ['favourites'],
+    });
+
+    const article = await this.findBySlug(slug);
+
+    const isNotFavourited =
+      user.favourites.findIndex((ar) => ar.id === article.id) === -1;
+
+    if (isNotFavourited) {
+      user.favourites.push(article);
+      article.favouritesCount++;
+      await this.userRepository.save(user);
+      await this.articleRepository.save(article);
+    }
+
+    return article;
   }
 }
