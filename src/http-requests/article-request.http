@@ -30,6 +30,12 @@ POST {{host}}/article/{{slug}}/favourite
 Authorization: Bearer {{token}}
 
 
+### Unlike an article
+
+DELETE {{host}}/article/{{slug}}/favourite
+Authorization: Bearer {{token}}
+
+
 ### Delete article by slug
 DELETE {{host}}/article/{{slug}}
 Authorization: Bearer {{token}}

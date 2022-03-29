@@ -49,7 +49,23 @@ export class ArticleController {
     @User('id') userId: number,
     @Param('slug') slug: string,
   ): Promise<ArticleResponseInterface> {
-    const article = await this.articleService.likeArticle(userId, slug);
+    const article = await this.articleService.addArticleToFavourites(
+      userId,
+      slug,
+    );
+    return this.articleService.buildArticleResponse(article);
+  }
+
+  @Delete('/:slug/favourite')
+  @UseGuards(AuthGuard)
+  async unlikeArticle(
+    @User('id') userId: number,
+    @Param('slug') slug: string,
+  ): Promise<ArticleResponseInterface> {
+    const article = await this.articleService.deleteArticleFromFavourites(
+      userId,
+      slug,
+    );
     return this.articleService.buildArticleResponse(article);
   }
 
