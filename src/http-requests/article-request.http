@@ -5,9 +5,8 @@
 
 
 ### Get Feed (articles)
-GET {{host}}/article
+GET {{host}}/article?tag=react
 Authorization: Bearer {{token}}
-
 
 
 ### Create an article
