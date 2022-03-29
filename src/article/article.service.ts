@@ -123,4 +123,10 @@ export class ArticleService {
 
     return await this.articleRepository.save(article);
   }
+
+  async likeArticle(userId: number, slug: string): Promise<ArticleEntity> {
+    const user = this.userRepository.findOne(userId);
+    const article = this.findBySlug(slug);
+    return 'string' as any;
+  }
 }

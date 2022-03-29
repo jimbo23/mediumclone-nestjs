@@ -43,6 +43,16 @@ export class ArticleController {
     return this.articleService.buildArticleResponse(article);
   }
 
+  @Post('/:slug/favourite')
+  @UseGuards(AuthGuard)
+  async likeArticle(
+    @User('id') userId: number,
+    @Param('slug') slug: string,
+  ): Promise<ArticleResponseInterface> {
+    const article = await this.articleService.likeArticle(userId, slug);
+    return this.articleService.buildArticleResponse(article);
+  }
+
   @Get('/:slug')
   async getOneArticle(
     @Param('slug')

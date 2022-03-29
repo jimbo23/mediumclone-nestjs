@@ -7,11 +7,15 @@ Content-Type: application/json
 
 {
   "user": {
-    "username":"wow4223",
-    "email": "restcli22ent432@gmail.com",
-    "password":"restclient324"
+    "username":"newuser",
+    "email": "newuser@gmail.com",
+    "password":"newuser"
   }
 }
+
+> {%
+    client.global.set("token", response.body.user.token);
+%}
 
 ### Login a user
 POST {{host}}/users/login
@@ -23,6 +27,11 @@ Content-Type: application/json
         "email": "kiefer@gmail.com"
     }
 }
+
+> {%
+    client.global.set("token", response.body.user.token);
+%}
+
 
 
 ### Get current user

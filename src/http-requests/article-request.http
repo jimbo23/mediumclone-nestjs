@@ -1,13 +1,6 @@
-@host = http://localhost:3000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJraWVmZXI5IiwiZW1haWwiOiJraWVmZXJAZ21haWwuY29tIiwiaWF0IjoxNjQ4NDYxNDY1fQ.XVwTnMmq345tF0DqoUUg-gI-Ru08N03iObnomb2rLBc
-
-@slug=new-article-2sii02
-
-
 ### Get Feed (articles)
-GET {{host}}/article?tag=react
+GET {{host}}/article?tag=react&limit=2
 Authorization: Bearer {{token}}
-
 
 ### Create an article
 POST {{host}}/article
@@ -17,12 +10,14 @@ Authorization: Bearer {{token}}
 
 {
     "article": {
-        "title":"How to learn reactJs",
+        "title":"new user",
         "description": "Ever wonder how?",
         "body": "hello it's react + vue ",
         "tagList": ["reactjs", "vuejs"]
     }
 }
+
+> {% client.global.set('slug', response.body.article.slug) %}}
 
 
 ### Get article by slug
@@ -47,3 +42,5 @@ Authorization: Bearer {{token}}
         "tagList": ["reactjs", "wowjs"]
     }
 }
+
+> {% client.global.set('slug', response.body.article.slug) %}}
