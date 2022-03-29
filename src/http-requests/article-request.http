@@ -3,6 +3,13 @@
 
 @slug=new-article-2sii02
 
+
+### Get Feed (articles)
+GET {{host}}/article
+Authorization: Bearer {{token}}
+
+
+
 ### Create an article
 POST {{host}}/article
 Content-Type: application/json
@@ -17,6 +24,7 @@ Authorization: Bearer {{token}}
         "tagList": ["reactjs", "vuejs"]
     }
 }
+
 
 ### Get article by slug
 GET {{host}}/article/{{slug}}
