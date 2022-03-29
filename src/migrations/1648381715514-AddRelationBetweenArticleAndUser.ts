@@ -1,16 +1,21 @@
-import {MigrationInterface, QueryRunner} from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AddRelationBetweenArticleAndUser1648381715514 implements MigrationInterface {
-    name = 'AddRelationBetweenArticleAndUser1648381715514'
+export class AddRelationBetweenArticleAndUser1648381715514
+  implements MigrationInterface
+{
+  name = 'AddRelationBetweenArticleAndUser1648381715514';
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`ALTER TABLE "articles" ADD "authorId" integer`);
-        await queryRunner.query(`ALTER TABLE "articles" ADD CONSTRAINT "FK_65d9ccc1b02f4d904e90bd76a34" FOREIGN KEY ("authorId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
-    }
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`ALTER TABLE "articles" ADD "authorId" integer`);
+    await queryRunner.query(
+      `ALTER TABLE "articles" ADD CONSTRAINT "FK_65d9ccc1b02f4d904e90bd76a34" FOREIGN KEY ("authorId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+    );
+  }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`ALTER TABLE "articles" DROP CONSTRAINT "FK_65d9ccc1b02f4d904e90bd76a34"`);
-        await queryRunner.query(`ALTER TABLE "articles" DROP COLUMN "authorId"`);
-    }
-
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(
+      `ALTER TABLE "articles" DROP CONSTRAINT "FK_65d9ccc1b02f4d904e90bd76a34"`,
+    );
+    await queryRunner.query(`ALTER TABLE "articles" DROP COLUMN "authorId"`);
+  }
 }

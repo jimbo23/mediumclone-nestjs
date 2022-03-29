@@ -13,6 +13,8 @@ export class ArticleService {
   constructor(
     @InjectRepository(ArticleEntity)
     private readonly articleRepository: Repository<ArticleEntity>,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
   ) {}
 
   async getArticles(
@@ -25,6 +27,23 @@ export class ArticleService {
 
     const articlesCount = await queryBuilder.getCount();
 
+    if (query.author) {
+      const author = await this.userRepository.findOne({
+        username: query.author,
+      });
+
+      // authorId is a foreign key to articles :)
+      queryBuilder.andWhere('articles.authorId = :id', {
+        id: author.id,
+      });
+    }
+
+    if (query.tag) {
+      queryBuilder.andWhere('articles.tagList LIKE :tag', {
+        tag: `%${query.tag}%`,
+      });
+    }
+
     if (query.offset) {
       queryBuilder.offset(query.offset);
     }
@@ -34,6 +53,7 @@ export class ArticleService {
     }
 
     const articles = await queryBuilder.getMany();
+    console.log(articles.length);
 
     return { articles, articlesCount };
   }
