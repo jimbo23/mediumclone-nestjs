@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from '@app/user/user.entity';
@@ -10,6 +10,10 @@ export class ProfileService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
   async getProfile(username: string) {
-    return username;
+    const profile = await this.userRepository.findOne({ username });
+    if (!profile) {
+      throw new HttpException('Profile not found!', HttpStatus.NOT_FOUND);
+    }
+    return profile;
   }
 }
