@@ -70,6 +70,25 @@ ensure docker is running on the right port
 
 <img src='./docker.png' height='100px'/>
 
+### Workflow to run db-migration and seed data in db (step by step)
+
+0. drop the db (if you need to):
+```
+db:drop
+```
+1. create migration:
+```
+db:create 'GIVE_THIS_A_MIGRATION_NAME'
+```
+2. run the migration:
+```
+db:migrate
+```
+3. seed the database:
+```
+db:seed
+```
+
 ## Installation
 
 ```bash
