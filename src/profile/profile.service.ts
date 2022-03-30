@@ -9,7 +9,7 @@ export class ProfileService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
   ) {}
-  async getProfile(username: string) {
+  async getProfile(userId: number, username: string) {
     const profile = await this.userRepository.findOne({ username });
     if (!profile) {
       throw new HttpException('Profile not found!', HttpStatus.NOT_FOUND);

@@ -1,5 +1,5 @@
 ### Get profile from username
 
-GET {{host}}/profile/kiefer
+GET {{host}}/profiles/kiefer
 
 ###
