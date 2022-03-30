@@ -6,6 +6,7 @@ export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
   @Get('/:username')
   async getProfile(@Param('username') username: string) {
-    return await this.profileService.getProfile(username);
+    const profile = await this.profileService.getProfile(username);
+    return this.profileService.buildProfileResponse(profile);
   }
 }

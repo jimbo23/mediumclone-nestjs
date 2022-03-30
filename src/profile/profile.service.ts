@@ -16,4 +16,15 @@ export class ProfileService {
     }
     return profile;
   }
+
+  buildProfileResponse(profile) {
+    let { username, bio, image } = profile;
+    return {
+      profile: {
+        username,
+        bio,
+        image,
+      },
+    };
+  }
 }
