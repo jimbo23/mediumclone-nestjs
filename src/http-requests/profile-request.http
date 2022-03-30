@@ -1,0 +1,5 @@
+### Get profile from username
+
+GET {{host}}/profile/kiefer
+
+###
