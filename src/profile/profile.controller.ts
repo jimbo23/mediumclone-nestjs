@@ -1,7 +1,8 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { ProfileService } from '@app/profile/profile.service';
 import { User } from '@app/user/decorators/user.decorator';
 import { ProfileResponseInterface } from '@app/profile/types/profileResponse.interface';
+import { AuthGuard } from '@app/guards/auth.guard';
 
 @Controller('profiles')
 export class ProfileController {
@@ -16,6 +17,7 @@ export class ProfileController {
   }
 
   @Post('/:username/follow')
+  @UseGuards(AuthGuard)
   async followProfile(
     @User('id') userId: number,
     @Param('username') username: string,

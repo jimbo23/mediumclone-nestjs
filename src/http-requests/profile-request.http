@@ -3,3 +3,5 @@
 GET {{host}}/profiles/kiefer
 
 ###
+
+POST {{host}}/profiles/kiefer/follow
