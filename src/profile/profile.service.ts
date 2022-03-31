@@ -75,14 +75,10 @@ export class ProfileService {
       );
     }
 
-    const follow = await this.followRepository.findOne({
+    await this.followRepository.delete({
       followerId: userId,
       followingId: profile.id,
     });
-
-    if (follow) {
-      await this.followRepository.delete(follow);
-    }
 
     return { ...profile, following: false };
   }
