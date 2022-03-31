@@ -7,6 +7,11 @@
 
 </p>
 
+### Some of the key features in this medium-clone application:
+1. Writing articles
+2. Follow & Unfollow different users
+
+
 ## Some Notes:
 
 #### how to bring in validaton in nestjs?

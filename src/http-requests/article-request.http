@@ -1,5 +1,5 @@
 ### Get Feed (articles)
-GET {{host}}/article?favourited=kiefer9
+GET {{host}}/articles
 Authorization: Bearer {{token}}
 
 ### Create an article
