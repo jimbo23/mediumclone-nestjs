@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('follows')
 export class FollowEntity {
   @PrimaryGeneratedColumn()
   id: number;
