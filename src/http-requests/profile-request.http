@@ -2,7 +2,12 @@
 
 GET {{host}}/profiles/kiefer2
 
-###
+### follow a profile
 
 POST {{host}}/profiles/kiefer2/follow
+Authorization: Bearer {{token}}
+
+
+### Unfollow a profile
+DELETE {{host}}/profiles/kiefer2/follow
 Authorization: Bearer {{token}}
