@@ -20,7 +20,12 @@ export class ProfileService {
       throw new HttpException('Profile not found!', HttpStatus.NOT_FOUND);
     }
 
-    return { ...profile, following: false };
+    const follow = await this.followRepository.findOne({
+      followerId: userId,
+      followingId: profile.id,
+    });
+
+    return { ...profile, following: Boolean(follow) };
   }
 
   buildProfileResponse(profile: ProfileType): ProfileResponseInterface {

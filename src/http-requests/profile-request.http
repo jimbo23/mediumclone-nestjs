@@ -1,6 +1,7 @@
 ### Get profile from username
 
 GET {{host}}/profiles/kiefer2
+Authorization: Bearer {{token}}
 
 ### follow a profile
 
