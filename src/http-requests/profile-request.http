@@ -1,7 +1,8 @@
 ### Get profile from username
 
-GET {{host}}/profiles/kiefer
+GET {{host}}/profiles/kiefer2
 
 ###
 
-POST {{host}}/profiles/kiefer/follow
+POST {{host}}/profiles/kiefer2/follow
+Authorization: Bearer {{token}}

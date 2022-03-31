@@ -19,6 +19,7 @@ export class ProfileService {
     if (!profile) {
       throw new HttpException('Profile not found!', HttpStatus.NOT_FOUND);
     }
+
     return { ...profile, following: false };
   }
 
