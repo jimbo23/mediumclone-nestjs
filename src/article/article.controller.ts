@@ -18,6 +18,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { BackendValidationPipe } from '@app/shared/pipes/backendValidation.pipe';
 
 @Controller('/article')
 export class ArticleController {
@@ -41,7 +42,7 @@ export class ArticleController {
   }
 
   @Post()
-  @UsePipes(new ValidationPipe())
+  @UsePipes(new BackendValidationPipe())
   @UseGuards(AuthGuard)
   async create(
     @User() user: UserEntity,
@@ -93,7 +94,7 @@ export class ArticleController {
   }
 
   @Put('/:slug')
-  @UsePipes(new ValidationPipe())
+  @UsePipes(new BackendValidationPipe())
   @UseGuards(AuthGuard)
   async updateArticle(
     @User('id') userId: number,

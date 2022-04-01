@@ -24,6 +24,20 @@ Authorization: Bearer {{token}}
 
 > {% client.global.set('slug', response.body.article.slug) %}}
 
+### Create an invalid*** article, expect 422 with error message
+POST {{host}}/article
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+{
+  "article": {
+
+  }
+}
+
+> {% client.global.set('slug', response.body.article.slug) %}}
+
 
 ### Get article by slug
 GET {{host}}/article/{{slug}}
