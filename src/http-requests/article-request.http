@@ -1,6 +1,11 @@
-### Get Feed (articles)
-GET {{host}}/articles
+### Get article
+GET {{host}}/article
 Authorization: Bearer {{token}}
+
+### Get current user feed
+GET {{host}}/article/feed
+Authorization: Bearer {{token}}
+
 
 ### Create an article
 POST {{host}}/article
@@ -10,7 +15,7 @@ Authorization: Bearer {{token}}
 
 {
     "article": {
-        "title":"new user",
+        "title":"22222222222222",
         "description": "Ever wonder how?",
         "body": "hello it's react + vue ",
         "tagList": ["reactjs", "vuejs"]

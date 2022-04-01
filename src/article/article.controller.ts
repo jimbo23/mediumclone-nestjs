@@ -19,7 +19,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 
-@Controller('article')
+@Controller('/article')
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
@@ -29,6 +29,15 @@ export class ArticleController {
     @Query() query: any,
   ): Promise<ArticlesResponseInterface> {
     return await this.articleService.getArticles(userId, query);
+  }
+
+  @Get('/feed')
+  @UseGuards(AuthGuard)
+  async getFeed(
+    @User('id') userId: number,
+    @Query() query: any,
+  ): Promise<ArticlesResponseInterface> {
+    return await this.articleService.getFeed(userId, query);
   }
 
   @Post()
